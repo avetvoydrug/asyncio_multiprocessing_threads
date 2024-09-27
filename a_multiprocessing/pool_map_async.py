@@ -12,19 +12,18 @@ class Tester:
     def __str__(self) -> str:
         return f'{self.name}: {self.value}'
 
+    def test_pool(self):
+        self.upgraded.append(self)
+        s = randint(-214,214)
+        self.value += s
+        print(f'name: {multiprocessing.current_process().name}, значение: {self.value} name_obj: {self.name}\n')
+        return self
+
     @staticmethod
     def printer(response):
         print('all_right')
         a = [str(i) for i in response]
         print(a)
-
-    @staticmethod
-    def test_pool(obj):
-        obj.upgraded.append(obj)
-        s = randint(-214,214)
-        obj.value += s
-        print(f'name: {multiprocessing.current_process().name}, значение: {obj.value} name_obj: {obj.name}\n')
-        return obj
 
 if __name__ == '__main__':
     need_upgrade = [Tester(i) for i in range(200)]
